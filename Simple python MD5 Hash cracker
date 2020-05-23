@@ -1,0 +1,24 @@
+# Simple python MD5 Hash cracker script
+import hashlib
+with open("abacus.txt" , "r") as file:
+   raw = file.read()
+
+wordlist = raw.split("\n")
+print("Welcome to MD5 Hash cracker : Version 1.0")
+user_hash = input("Enter MD5 hash to crack : ")
+check = 0
+for i in range(0 , len(wordlist)):
+   wordlist[i].replace(" " , "")
+   hash_object = hashlib.md5(wordlist[i].encode())
+   hexhash = hash_object.hexdigest() 
+   
+
+   if hexhash == user_hash:
+      print("Hash cracked , word is : " + wordlist[i])
+      check = 1
+      break
+
+
+if check == 0:
+   print("Hash crack failed")
+   
